@@ -1,0 +1,339 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"inline",
+				"inline-block"
+			],
+			[
+				"pubs",
+				"pubs"
+			],
+			[
+				"BS",
+				"BS"
+			],
+			[
+				"Fu",
+				"function"
+			],
+			[
+				"Track",
+				"TrackLoader"
+			],
+			[
+				"direct",
+				"directive"
+			],
+			[
+				"guestbook",
+				"guestbookKey"
+			],
+			[
+				"New",
+				"NewContext"
+			],
+			[
+				"Statu",
+				"StatusInternalServerError"
+			],
+			[
+				"Re",
+				"Request"
+			],
+			[
+				"read",
+				"readCallback"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "main_test.py",
+			"settings":
+			{
+				"buffer_size": 791,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "main.py",
+			"settings":
+			{
+				"buffer_size": 828,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/usr/local/anaconda3/envs/py27/lib/python2.7/site-packages/six.py",
+			"settings":
+			{
+				"buffer_size": 30098,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app.yaml",
+			"settings":
+			{
+				"buffer_size": 91,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 347.0,
+		"selected_items":
+		[
+			[
+				"package",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 449.0
+	},
+	"console":
+	{
+		"height": 338.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Users/jtullio/projects/ESP8266 ePaper/espaper-weatherstation-master/settings.h",
+		"/Users/jtullio/projects/Meteor/homepage/topnav.css",
+		"/Users/jtullio/projects/Meteor/homepage/data/publications.json",
+		"/Users/jtullio/projects/Meteor/leaderboard/leaderboard.html",
+		"/Users/jtullio/projects/Meteor/leaderboard/leaderboard.css",
+		"/Users/jtullio/projects/Meteor/leaderboard/leaderboard.js",
+		"/Users/jtullio/projects/jtullio-abelana/notify/app.yaml",
+		"/Users/jtullio/projects/angulartest/app/js/controllers.js",
+		"/Users/jtullio/projects/angulartest/app/js/app.js",
+		"/Users/jtullio/projects/angulartest/app/index.html",
+		"/Users/jtullio/Documents/Lynda/JQuery/exercise1/first-page.html",
+		"/Users/jtullio/projects/WiFly_communicator/WiFly_communicator.h",
+		"/Users/jtullio/projects/go-test/hello.go",
+		"/Users/jtullio/projects/learnyounode/exercise7.js",
+		"/Users/jtullio/projects/learnyounode/exercise4.js",
+		"/Users/jtullio/projects/learnyounode/exercise5.js",
+		"/Users/jtullio/projects/learnyounode/exercise3.js",
+		"/Users/jtullio/projects/learnyounode/newprogram.js"
+	],
+	"find":
+	{
+		"height": 0.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"routeProvider",
+			"myApp"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 3,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "main_test.py",
+					"settings":
+					{
+						"buffer_size": 791,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "main.py",
+					"settings":
+					{
+						"buffer_size": 828,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "/usr/local/anaconda3/envs/py27/lib/python2.7/site-packages/six.py",
+					"settings":
+					{
+						"buffer_size": 30098,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "app.yaml",
+					"settings":
+					{
+						"buffer_size": 91,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/YAML/YAML.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"replace":
+	{
+		"height": 0.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 150.0,
+	"status_bar_visible": true
+}
