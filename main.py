@@ -14,6 +14,7 @@
 
 import webapp2
 from twilio.twiml.messaging_response import Message, MessagingResponse
+from twilio.twiml.voice_response import VoiceResponse
 
 # twilio phone # is +12242796236
 
@@ -24,8 +25,8 @@ class MainPage(webapp2.RequestHandler):
 
 class HelloMonkey(webapp2.RequestHandler):
     def post(self):
-        r = MessagingResponse()
-        r.message("Hello Monkey!!")
+        r = VoiceResponse()
+        r.say("Hello Pumpkin!!")
         self.response.headers['Content-Type'] = 'text/xml'
         self.response.write(str(r))
 
