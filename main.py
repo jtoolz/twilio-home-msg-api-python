@@ -13,14 +13,23 @@
 # limitations under the License.
 
 import webapp2
-from twilio import twiml
+from twilio.twiml.messaging_response import Message, MessagingResponse
+
+# twilio phone # is +12242796236
+
+class MainPage(webapp2.RequestHandler):
+    def get(self):
+        self.response.headers['Content-Type'] = 'text/plain'
+        self.response.write('Hello, World!')
 
 class HelloMonkey(webapp2.RequestHandler):
     def post(self):
-        r = twiml.Response()
-        r.say("Hello Monkey!!")
+        r = MessagingResponse()
+        r.message("Hello Monkey!!")
         self.response.headers['Content-Type'] = 'text/xml'
         self.response.write(str(r))
 
-app = webapp2.WSGIApplication([('/twiml', HelloMonkey)],
-                              debug=True)
+app = webapp2.WSGIApplication([
+	('/', MainPage),
+	('/twiml', HelloMonkey)
+	], debug=True)
