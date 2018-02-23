@@ -13,24 +13,42 @@
 # limitations under the License.
 
 import webapp2
+import os
+
+from flask import Flask, request
 from twilio.twiml.messaging_response import Message, MessagingResponse
 from twilio.twiml.voice_response import VoiceResponse
 
-# twilio phone # is +12242796236
+# Config settings
+TWILIO_PHONE_NUM = os.environ['TWILIO_PHONE_NUM']
+TWILIO_AUTH_TOKEN = os.environ['TWILIO_AUTH_TOKEN']
+TWILIO_ACCT_SID = os.environ['TWILIO_ACCT_SID']
+# End config
 
-class MainPage(webapp2.RequestHandler):
-    def get(self):
-        self.response.headers['Content-Type'] = 'text/plain'
-        self.response.write('Hello, World!')
+app = Flask(__name__)
 
-class HelloMonkey(webapp2.RequestHandler):
-    def post(self):
-        r = VoiceResponse()
-        r.say("Hello Pumpkin!!")
-        self.response.headers['Content-Type'] = 'text/xml'
-        self.response.write(str(r))
+@app.route('/call/receive', methods=['POST'])
+def receive_voice():
+    r = VoiceResponse()
+    r.say("Hello Pumpkin!!")    
+    return str(r), 200, {'Content-Type': 'application/xml'}
 
-app = webapp2.WSGIApplication([
-	('/', MainPage),
-	('/twiml', HelloMonkey)
-	], debug=True)
+#	
+# Receive an SMS message and put it in datastore
+# Only accept from known numbers in address book 
+@app.route('/sms/receive', methods=['POST'])
+def receive_sms():
+    sender = request.values.get('From')
+    body = request.values.get('Body')
+
+    message = 'Hello, {}, you said: {}'.format(sender, body)
+
+    response = MessagingResponse()
+    response.message(message)
+    return str(response), 200, {'Content-Type': 'application/xml'}
+    
+
+if __name__ == '__main__':
+    # This is used when running locally. Gunicorn is used to run the
+    # application on Google App Engine. See entrypoint in app.yaml.
+    app.run(host='127.0.0.1', port=8080, debug=True)
