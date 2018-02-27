@@ -27,19 +27,12 @@ from google.appengine.ext import ndb
 TWILIO_PHONE_NUM = os.environ['TWILIO_PHONE_NUM']
 TWILIO_AUTH_TOKEN = os.environ['TWILIO_AUTH_TOKEN']
 TWILIO_ACCT_SID = os.environ['TWILIO_ACCT_SID']
-WHITELIST_FILE = os.environ['WHITELIST_FILE']
 DEFAULT_MESSAGELIST_NAME = "default_messagelist"
 # End config
 
 whitelist = {"+15555551212":"Test1", "+15555551212":"Test2"}
 
 app = Flask(__name__)
-
-def load_whitelist():
-	logging.info("loading whitelist() from " + WHITELIST_FILE)
-	f = open(WHITELIST_FILE)
-	logging.info("f is" + str(f))
-	return json.load(f)
 
 # We set a parent key to ensure they are all in the same entity
 # group. Queries across the entity group will be consistent.
