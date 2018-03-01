@@ -16,37 +16,30 @@ import webapp2
 import os
 import logging
 import json
+import pdb
+
+from google.appengine.ext import ndb
 
 from flask import Flask, request
 from twilio.twiml.messaging_response import Message, MessagingResponse
 from twilio.twiml.voice_response import VoiceResponse
 
-from google.appengine.ext import ndb
+from models import HomeMsgModel, WhitelistModel, message_key
+
 
 # Config settings
 TWILIO_PHONE_NUM = os.environ['TWILIO_PHONE_NUM']
 TWILIO_AUTH_TOKEN = os.environ['TWILIO_AUTH_TOKEN']
 TWILIO_ACCT_SID = os.environ['TWILIO_ACCT_SID']
-DEFAULT_MESSAGELIST_NAME = "default_messagelist"
 # End config
-
-whitelist = {"+15555551212":"Test1", "+15555551212":"Test2"}
 
 app = Flask(__name__)
 
-# We set a parent key to ensure they are all in the same entity
-# group. Queries across the entity group will be consistent.
-def message_key(messagelist_name = DEFAULT_MESSAGELIST_NAME):
-	return ndb.Key('MessageList', messagelist_name)
+def get_last_msg():
+    q = LastMsgModel.all(keys_only=True)
+    logging.info("created query")
+    return q.get()
 
-class Sender(ndb.Model):
-	name = ndb.StringProperty(indexed=False)
-	phone_num = ndb.StringProperty()
-
-class HomeMessage(ndb.Model):
-	sender = ndb.StructuredProperty(Sender)
-	content = ndb.StringProperty(indexed=False)
-	timestamp = ndb.DateTimeProperty(auto_now_add=True)
 
 @app.route('/call/receive', methods=['POST'])
 def receive_voice():
@@ -59,21 +52,34 @@ def receive_voice():
 # Only accept from known numbers in address book 
 @app.route('/sms/receive', methods=['POST'])
 def receive_sms():
-    sender = str(request.values.get('From'))
+    pdb.set_trace()
+    # Get SMS data from Twilio
+    sender_phone = str(request.values.get('From'))
     body = str(request.values.get('Body'))
-    logging.info("received msg " + str(body) + " from " + str(sender))
-#    if (any(whitelist.values()) is False):
-#    	load_whitelist()
+    logging.info("received msg " + body + " from " + sender_phone)
 
-    logging.info("whitelist is " + str(whitelist))
-    
-    if (sender in whitelist.keys()):
-    	logging.info("found key " + sender + " in whitelist")
-        homemsg = HomeMessage(parent=message_key())
-        homemsg.sender = Sender(name=whitelist[sender], phone_num=sender)
-        homemsg.content = body
-        logging.info("set body " + str(body))
-        homemsg.put()
+    # Check sender phone # against whitelist. We only want messages
+    # from sources on the list:
+    query = WhitelistModel.query().filter(WhitelistModel.sender_phone==sender_phone)
+    whitelist_result = query.get()
+    if (whitelist_result is not None):
+        # Check to see if we've received a message already. If so,
+        # set it's is_last property to False
+        query = HomeMsgModel.query().filter(HomeMsgModel.is_last==True)
+        msg_result = query.get()
+        if (msg_result is not None):
+            # Update is_last
+            msg_result.is_last=False
+            msg_result.put()
+        
+        # Add new message to the Datastore and mark it as last:
+        home_msg = HomeMsgModel(
+            parent=message_key(),
+            sender_name = whitelist_result.sender_name,
+            sender_phone = sender_phone,
+            content = body,
+            is_last=True)
+        msg_key = home_msg.put()        
 
     message = 'Hello, {}, you said: {}'.format(sender, body)
 

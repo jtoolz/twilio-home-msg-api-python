@@ -5,6 +5,7 @@
 
 # [START imports]
 import endpoints
+import HomeMessage, Sender from models
 
 from protorpc import message_types, messages, remote
 # [END imports]
