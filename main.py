@@ -52,7 +52,7 @@ def receive_voice():
 # Only accept from known numbers in address book 
 @app.route('/sms/receive', methods=['POST'])
 def receive_sms():
-    pdb.set_trace()
+    # pdb.set_trace()
     # Get SMS data from Twilio
     sender_phone = str(request.values.get('From'))
     body = str(request.values.get('Body'))
@@ -81,7 +81,7 @@ def receive_sms():
             is_last=True)
         msg_key = home_msg.put()        
 
-    message = 'Hello, {}, you said: {}'.format(sender, body)
+    message = 'Hello, {}, you said: {}'.format(sender_phone, body)
 
     response = MessagingResponse()
     response.message(message)
