@@ -1,6 +1,6 @@
 import endpoints
 from google.appengine.ext import ndb
-from protorpc import remote
+from endpoints_proto_datastore.ndb import EndpointsModel
 
 DEFAULT_MESSAGELIST_NAME = "default_messagelist"
 
@@ -15,10 +15,14 @@ def message_key(messagelist_name = DEFAULT_MESSAGELIST_NAME):
 # Right now we just want to provide the last message received 
 # at the Twilio phone number. Future versions might allow indexing
 # back into older messages, or filtering on senders or content
-class HomeMsgModel(ndb.Model):
-    sender_name = ndb.StringProperty(indexed=False)
+class HomeMsgModel(EndpointsModel):
+    # Borrowed from Endpoints-proto library. Sets exact order of fields
+    # in RPC message schema.
+    _message_fields_schema = ('sender_name', 'sender_phone', 'content', 'created', 'is_last')
+
+    sender_name = ndb.StringProperty()
     sender_phone = ndb.StringProperty()
-    content = ndb.StringProperty(indexed=False)
+    content = ndb.StringProperty()
     created = ndb.DateTimeProperty(auto_now_add=True)
     is_last = ndb.BooleanProperty()
 

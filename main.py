@@ -18,7 +18,7 @@ import logging
 import json
 import pdb
 
-from google.appengine.ext import ndb
+# from google.appengine.ext import ndb
 
 from flask import Flask, request
 from twilio.twiml.messaging_response import Message, MessagingResponse
